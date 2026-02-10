@@ -3,319 +3,280 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>NO AGEx | Fashion Has No Age</title>
-
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<title>No AGEx | Fashion Has No Age</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
 
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
-body{font-family:'Poppins',sans-serif;color:#111}
+body{font-family:Poppins,sans-serif;background:#0b0b0b;color:#eee}
+
+/* TERMS POPUP */
+#termsPopup{
+position:fixed;
+inset:0;
+background:rgba(0,0,0,.95);
+display:flex;
+align-items:center;
+justify-content:center;
+z-index:10000;
+}
+#termsBox{
+background:#121212;
+border:1px solid #222;
+border-radius:18px;
+padding:30px;
+max-width:520px;
+width:90%;
+font-size:14px;
+line-height:1.6;
+}
+#termsBox h2{text-align:center;margin-bottom:15px}
+#termsBox ul{padding-left:18px}
+#termsBox button{
+margin-top:20px;
+padding:12px 32px;
+border-radius:30px;
+border:none;
+background:#fff;
+color:#000;
+font-weight:600;
+cursor:pointer;
+display:block;
+margin-left:auto;
+margin-right:auto;
+}
 
 /* HEADER */
-header{
-  position:sticky;
-  top:0;
-  z-index:1000;
-  background:#000;
-  padding:18px 8%;
-}
-.nav{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-}
-.brand{
-  color:#fff;
-  font-size:24px;
-  font-weight:700;
-  letter-spacing:2px;
-}
-.nav-links a{
-  color:#fff;
-  margin-left:25px;
-  text-decoration:none;
-  font-weight:500;
-}
+header{background:#000;padding:18px 8%;position:sticky;top:0;z-index:1000}
+.nav{display:flex;justify-content:space-between;align-items:center}
+.brand{font-size:24px;font-weight:700;letter-spacing:2px}
+.nav a{color:#ccc;margin-left:25px;text-decoration:none}
+.nav a:hover{color:#fff}
 
 /* HERO */
 .hero{
-  position:relative;
-  min-height:90vh;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  text-align:center;
-  color:#fff;
-  overflow:hidden;
+min-height:95vh;
+display:flex;
+align-items:center;
+justify-content:center;
+text-align:center;
+background-size:cover;
+background-position:center;
+animation:hero 12s infinite;
+position:relative;
 }
-.hero::before{
-  content:"";
-  position:absolute;
-  inset:0;
-  background-size:cover;
-  background-position:center;
-  animation:heroSlide 18s infinite;
-  z-index:-2;
-}
-.hero::after{
-  content:"";
-  position:absolute;
-  inset:0;
-  background:linear-gradient(rgba(0,0,0,.65),rgba(0,0,0,.8));
-  z-index:-1;
-}
+.hero::after{content:'';position:absolute;inset:0;background:rgba(0,0,0,.65)}
+.hero-content{position:relative;z-index:2}
+.hero h1{font-size:64px;letter-spacing:6px}
+.hero p{font-size:20px;margin-top:15px}
 
-@keyframes heroSlide{
-  0%{background-image:url('hero1.png')}
-  33%{background-image:url('hero2.png')}
-  66%{background-image:url('hero3.png')}
-  100%{background-image:url('hero1.png')}
+@keyframes hero{
+0%{background-image:url('hero1.png')}
+33%{background-image:url('hero2.png')}
+66%{background-image:url('hero3.png')}
 }
-
-.hero h1{font-size:60px;letter-spacing:6px}
-.hero p{margin-top:15px;font-size:20px}
-
-section{padding:80px 8%}
-.title{text-align:center;margin-bottom:50px}
-.title h2{font-size:38px}
 
 /* PRODUCTS */
+section{padding:90px 8%}
 .products{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
-  gap:40px;
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+gap:40px;
 }
 .card{
-  padding:25px;
-  border-radius:22px;
-  box-shadow:0 15px 35px rgba(0,0,0,.08);
-  text-align:center;
+background:#121212;
+border:1px solid #222;
+border-radius:20px;
+padding:25px;
+text-align:center;
 }
-.card img{
-  width:100%;
-  border-radius:16px;
-}
+.card img{width:100%;border-radius:15px}
 
-.color-btns{
-  display:flex;
-  justify-content:center;
-  gap:10px;
-  margin:15px 0;
-}
-.color-btns button{
-  padding:8px 14px;
-  border-radius:20px;
-  border:1px solid #ccc;
-  background:#fff;
-  cursor:pointer;
-}
+.price{margin:15px 0}
+.old{text-decoration:line-through;color:#777}
+.new{font-size:22px;font-weight:700}
 
-.discount{
-  background:#6b2cff;
-  color:#fff;
-  display:inline-block;
-  padding:6px 14px;
-  border-radius:20px;
-  font-size:14px;
+.colors{
+display:flex;
+justify-content:center;
+gap:10px;
+margin:15px 0;
 }
-.price{
-  margin:12px 0;
+.color{
+width:18px;
+height:18px;
+border-radius:50%;
+cursor:pointer;
+border:2px solid #333;
 }
-.price del{color:#999;margin-right:8px}
-.price strong{font-size:22px}
+.black{background:#000}
+.grey{background:#777}
+.white{background:#eee}
 
-.order-btn{
-  display:inline-block;
-  margin-top:15px;
-  background:#000;
-  color:#fff;
-  padding:12px 35px;
-  border-radius:30px;
-  text-decoration:none;
-  font-weight:600;
+.actions{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+.btn{
+padding:12px 28px;
+border-radius:30px;
+font-weight:600;
+border:none;
+cursor:pointer;
 }
+.order{background:#fff;color:#000}
+.size{background:#6b2cff;color:#fff}
 
-/* ABOUT */
-.about{
-  background:#fafafa;
-  text-align:center;
+/* SIZE MODAL */
+#sizeModal{
+position:fixed;
+inset:0;
+background:rgba(0,0,0,.9);
+display:none;
+align-items:center;
+justify-content:center;
+z-index:9999;
 }
-.about p{
-  max-width:700px;
-  margin:20px auto 0;
-  color:#444;
+.modal{
+background:#121212;
+padding:30px;
+border-radius:18px;
+max-width:420px;
+width:90%;
+text-align:center;
 }
-
-/* ORDER MODAL */
-#orderModal{
-  display:none;
-  position:fixed;
-  inset:0;
-  background:rgba(0,0,0,.6);
-  z-index:2000;
+.modal table{
+width:100%;
+margin-top:15px;
+border-collapse:collapse;
 }
-.modal-box{
-  background:#fff;
-  max-width:500px;
-  margin:5% auto;
-  padding:30px;
-  border-radius:20px;
-}
-.modal-box form{
-  display:grid;
-  gap:12px;
-}
-.modal-box input,
-.modal-box textarea,
-.modal-box select{
-  padding:12px;
-  border-radius:10px;
-  border:1px solid #ccc;
-}
-.modal-box button{
-  padding:14px;
-  border:none;
-  border-radius:30px;
-  background:#6b2cff;
-  color:#fff;
-  font-weight:600;
-}
-.close{
-  text-align:center;
-  margin-top:10px;
-  cursor:pointer;
-  color:#666;
+.modal th,.modal td{
+border:1px solid #333;
+padding:10px;
 }
 
 /* FOOTER */
-footer{
-  background:#0d021a;
-  color:#cbb6ff;
-  text-align:center;
-  padding:25px;
-}
+footer{background:#000;padding:25px;text-align:center;color:#aaa}
 
 @media(max-width:768px){
-  .hero h1{font-size:40px}
-  .nav-links{display:none}
+.hero h1{font-size:42px}
 }
 </style>
 </head>
 
 <body>
 
-<header>
-  <div class="nav">
-    <div class="brand">NO AGEx</div>
-    <div class="nav-links">
-      <a href="#home">Home</a>
-      <a href="#products">Products</a>
-      <a href="#about">About</a>
-      <a href="https://instagram.com/noage_x" target="_blank">Instagram</a>
-    </div>
+<!-- TERMS & CONDITIONS POPUP -->
+<div id="termsPopup">
+  <div id="termsBox">
+    <h2>Terms & Conditions</h2>
+    <ul>
+      <li>Product colors may slightly vary due to lighting and screen resolution.</li>
+      <li>The displayed 20% discount is a limited-time promotional offer.</li>
+      <li>Please check the size chart carefully before placing an order.</li>
+      <li>Orders once placed cannot be cancelled.</li>
+      <li>Customer information is used only for order communication.</li>
+      <li>All designs, logos, and content belong to No AGEx.</li>
+    </ul>
+    <p style="margin-top:10px">
+      Contact: <b>noagex.@gmail.com</b>
+    </p>
+    <button onclick="acceptTerms()">I Agree & Continue</button>
   </div>
+</div>
+
+<header>
+<div class="nav">
+<div class="brand">NO AGEx</div>
+<div>
+<a href="#products">Products</a>
+<a href="https://instagram.com/noage_x" target="_blank">Instagram</a>
+</div>
+</div>
 </header>
 
-<div class="hero" id="home">
-  <div>
-    <h1>NO AGEx</h1>
-    <p>Fashion Has No Age</p>
-  </div>
+<div class="hero">
+<div class="hero-content">
+<h1>NO AGEx</h1>
+<p>Fashion Has No Age</p>
+</div>
 </div>
 
 <section id="products">
-  <div class="title"><h2>Our Collection</h2></div>
+<h2 style="text-align:center;margin-bottom:40px">Our Collection</h2>
 
-  <div class="products">
+<div class="products">
 
-    <!-- FOCUSED TEE -->
-    <div class="card">
-      <h3>Focused Tee</h3>
+<!-- FOCUSED TEE -->
+<div class="card">
+<img id="focusedImg" src="ad.png">
 
-      <img id="focusedImg" src="ad.png">
+<div class="colors">
+<div class="color black" onclick="changeImg('ad.png')"></div>
+<div class="color grey" onclick="changeImg('as2.png')"></div>
+<div class="color white" onclick="changeImg('ad3.png')"></div>
+</div>
 
-      <div class="color-btns">
-        <button onclick="changeFocused('ad.png')">Grey</button>
-        <button onclick="changeFocused('as2.png')">Beige</button>
-        <button onclick="changeFocused('ad3.png')">Black</button>
-      </div>
+<div class="price">
+<span class="old">₹1061</span><br>
+<span class="new">₹849 (20% OFF)</span>
+</div>
 
-      <div class="discount">20% OFF</div>
-      <div class="price"><del>₹1061</del><strong>₹849</strong></div>
+<div class="actions">
+<button class="btn order" onclick="order()">Order Now</button>
+<button class="btn size" onclick="openSize()">Size Chart</button>
+</div>
+</div>
 
-      <a class="order-btn" onclick="openOrder('Focused Tee')">Order Now</a>
-    </div>
+<!-- PANTHER TEE -->
+<div class="card">
+<img src="ad4.png">
+<div class="price">
+<span class="old">₹1061</span><br>
+<span class="new">₹849 (20% OFF)</span>
+</div>
+<div class="actions">
+<button class="btn order" onclick="order()">Order Now</button>
+<button class="btn size" onclick="openSize()">Size Chart</button>
+</div>
+</div>
 
-    <!-- PANTHER TEE -->
-    <div class="card">
-      <h3>Panther Tee</h3>
-
-      <img src="ad4.png">
-
-      <div class="discount">20% OFF</div>
-      <div class="price"><del>₹1061</del><strong>₹849</strong></div>
-
-      <a class="order-btn" onclick="openOrder('Panther Tee')">Order Now</a>
-    </div>
-
-  </div>
+</div>
 </section>
 
-<section class="about" id="about">
-  <div class="title"><h2>About NO AGEx</h2></div>
-  <p>
-    NO AGEx is built on one belief — style has no age.
-    Designed in India with premium fabrics, our tees are made
-    for confidence, comfort, and everyday strength.
-  </p>
-</section>
-
-<!-- ORDER MODAL -->
-<div id="orderModal">
-  <div class="modal-box">
-    <h3>Place Your Order</h3>
-
-    <form action="mailto:YOURMAIL@gmail.com" method="post" enctype="text/plain">
-      <input id="productName" name="Product" readonly>
-      <input name="Name" placeholder="Full Name" required>
-      <input name="Phone" placeholder="Phone Number" required>
-      <input name="Email" placeholder="Email Address" required>
-      <textarea name="Address" placeholder="Full Address" required></textarea>
-
-      <select name="Colour" required>
-        <option value="">Select Colour</option>
-        <option>Beige</option>
-        <option>Black</option>
-        <option>Grey</option>
-      </select>
-
-      <select name="Size" required>
-        <option value="">Select Size</option>
-        <option>S</option><option>M</option><option>L</option>
-        <option>XL</option><option>XXL</option>
-      </select>
-
-      <button type="submit">Submit Order</button>
-    </form>
-
-    <div class="close" onclick="closeOrder()">Close</div>
-  </div>
+<!-- SIZE CHART -->
+<div id="sizeModal">
+<div class="modal">
+<h3>Size Chart (inches)</h3>
+<table>
+<tr><th>Size</th><th>Chest</th><th>Length</th></tr>
+<tr><td>S</td><td>38</td><td>26</td></tr>
+<tr><td>M</td><td>40</td><td>27</td></tr>
+<tr><td>L</td><td>42</td><td>28</td></tr>
+<tr><td>XL</td><td>44</td><td>29</td></tr>
+<tr><td>XXL</td><td>46</td><td>30</td></tr>
+</table>
+<br>
+<button class="btn order" onclick="closeSize()">Close</button>
+</div>
 </div>
 
 <footer>
-  © 2025 NO AGEx | Fashion Has No Age
+© 2025 No AGEx | 📧 noagex.@gmail.com
 </footer>
 
 <script>
-function changeFocused(img){
-  document.getElementById("focusedImg").src = img;
+function acceptTerms(){
+document.getElementById("termsPopup").style.display="none";
 }
-function openOrder(product){
-  document.getElementById("orderModal").style.display="block";
-  document.getElementById("productName").value = product;
+function changeImg(src){
+document.getElementById("focusedImg").src = src;
 }
-function closeOrder(){
-  document.getElementById("orderModal").style.display="none";
+function openSize(){
+document.getElementById("sizeModal").style.display="flex";
+}
+function closeSize(){
+document.getElementById("sizeModal").style.display="none";
+}
+function order(){
+window.open("https://forms.gle/M7VQPv7Dk7XXUrmy5","_blank");
 }
 </script>
 
