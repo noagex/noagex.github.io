@@ -7,6 +7,11 @@
 
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
 
+<!-- PRELOAD HERO -->
+<link rel="preload" as="image" href="hero1.png">
+<link rel="preload" as="image" href="hero2.png">
+<link rel="preload" as="image" href="hero3.png">
+
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
 html,body{width:100%;overflow-x:hidden}
@@ -22,7 +27,7 @@ header{
   padding:16px 7%;
   position:sticky;
   top:0;
-  z-index:999;
+  z-index:1000;
 }
 .nav{
   display:flex;
@@ -42,7 +47,7 @@ header{
 }
 .nav a:hover{color:#fff}
 
-/* HERO (MOBILE SAFE) */
+/* HERO */
 .hero{
   min-height:90vh;
   display:flex;
@@ -58,15 +63,13 @@ header{
   width:100%;
   height:100%;
   object-fit:cover;
-  z-index:0;
-  animation:heroFade 12s infinite;
+  animation:heroFade 6s infinite;
 }
 .hero::after{
   content:'';
   position:absolute;
   inset:0;
   background:rgba(0,0,0,.65);
-  z-index:1;
 }
 .hero-content{
   position:relative;
@@ -81,17 +84,15 @@ header{
   margin-top:12px;
   color:#ddd;
 }
-
 @keyframes heroFade{
   0%{content:url('hero1.png')}
-  33%{content:url('hero2.png')}
-  66%{content:url('hero3.png')}
+  30%{content:url('hero2.png')}
+  60%{content:url('hero3.png')}
+  100%{content:url('hero1.png')}
 }
 
-/* SECTION */
-section{
-  padding:80px 7%;
-}
+/* SECTIONS */
+section{padding:80px 7%}
 
 /* PRODUCTS */
 .products{
@@ -105,16 +106,23 @@ section{
   padding:22px;
   border:1px solid #222;
 }
-
-/* IMAGE – HARD FIX */
 .card img{
   width:100%;
-  min-height:380px;
-  max-height:380px;
+  min-height:360px;
+  max-height:360px;
   object-fit:contain;
-  display:block;
   background:#000;
   border-radius:14px;
+}
+
+/* SWIPE */
+.swipe-box{
+  width:100%;
+  overflow:hidden;
+  touch-action:pan-y;
+}
+.swipe-box img{
+  transition:opacity .25s ease;
 }
 
 /* COLORS */
@@ -169,32 +177,14 @@ section{
 .order{background:#fff;color:#000}
 .size{background:#6b2cff;color:#fff}
 
-/* ABOUT – EXTENDED */
+/* ABOUT */
 .about{
   max-width:1000px;
   margin:auto;
   line-height:1.9;
   color:#ccc;
 }
-.about h2{
-  text-align:center;
-  margin-bottom:25px;
-}
-.about p{
-  margin-bottom:18px;
-  font-size:15px;
-}
-
-/* TERMS */
-.terms{
-  margin-top:40px;
-  background:#111;
-  padding:30px;
-  border-radius:18px;
-  border:1px solid #222;
-}
-.terms h3{margin-bottom:15px}
-.terms li{margin-bottom:10px}
+.about h2{text-align:center;margin-bottom:25px}
 
 /* SIZE MODAL */
 #sizeModal{
@@ -224,6 +214,42 @@ section{
   text-align:center;
 }
 
+/* TERMS POPUP */
+#termsPopup{
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,.85);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  z-index:10000;
+}
+.terms-box{
+  background:#121212;
+  width:92%;
+  max-width:520px;
+  border-radius:20px;
+  padding:28px;
+  border:1px solid #222;
+}
+.terms-box h3{text-align:center;margin-bottom:15px}
+.terms-box ul{font-size:14px;line-height:1.8;margin-bottom:18px}
+.terms-actions{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:10px;
+}
+.accept{
+  background:#6b2cff;
+  color:#fff;
+  border:none;
+  padding:10px 22px;
+  border-radius:25px;
+  font-weight:600;
+  cursor:pointer;
+}
+
 /* FOOTER */
 footer{
   background:#000;
@@ -233,15 +259,33 @@ footer{
   font-size:13px;
 }
 
-/* MOBILE */
 @media(max-width:768px){
   .hero h1{font-size:40px}
-  .card img{min-height:320px}
+  .card img{min-height:300px}
 }
 </style>
 </head>
 
 <body>
+
+<!-- TERMS -->
+<div id="termsPopup">
+  <div class="terms-box">
+    <h3>Terms & Conditions</h3>
+    <ul>
+      <li>All products are offered at a discounted price of ₹849.</li>
+      <li>Orders can be cancelled only before shipment.</li>
+      <li>Once shipped, cancellation or return is not possible.</li>
+      <li>Product can be checked only at the time of delivery.</li>
+      <li>Minor color variations may occur.</li>
+      <li>Order is confirmed after Google Form submission.</li>
+    </ul>
+    <div class="terms-actions">
+      <label><input type="checkbox" id="agreeCheck"> I agree</label>
+      <button class="accept" onclick="acceptTerms()">Continue</button>
+    </div>
+  </div>
+</div>
 
 <header>
   <div class="nav">
@@ -254,38 +298,49 @@ footer{
   </div>
 </header>
 
-<!-- HERO -->
 <div class="hero">
-  <img src="hero1.png" alt="No AGEx Hero">
+  <img src="hero1.png">
   <div class="hero-content">
     <h1>NO AGEx</h1>
     <p>Fashion Has No Age</p>
   </div>
 </div>
 
-<!-- PRODUCTS -->
 <section id="products">
 <h2 style="text-align:center;margin-bottom:40px">Our Collection</h2>
 
 <div class="products">
 
+<!-- FOCUSED TEE -->
 <div class="card">
+<div class="swipe-box"
+ontouchstart="startTouch(event)"
+ontouchmove="moveTouch(event)"
+onmousedown="startMouse(event)"
+onmousemove="moveMouse(event)"
+onmouseup="endSwipe()"
+onmouseleave="endSwipe()">
 <img id="focusedImg" src="ad.png">
-<div class="colors">
-<div class="color black" onclick="changeImg('ad.png')"></div>
-<div class="color grey" onclick="changeImg('ad2.png')"></div>
-<div class="color white" onclick="changeImg('ad3.png')"></div>
 </div>
+
+<div class="colors">
+<div class="color Grey" onclick="changeImg('ad.png')"></div>
+<div class="color Beige" onclick="changeImg('as2.png')"></div>
+<div class="color Black" onclick="changeImg('ad3.png')"></div>
+</div>
+
 <div class="price">
 <span class="old">₹1061</span>
 <span class="new">₹849 (20% OFF)</span>
 </div>
+
 <div class="actions">
 <button class="btn order" onclick="order()">Order Now</button>
 <button class="btn size" onclick="openSize()">Size Chart</button>
 </div>
 </div>
 
+<!-- PANTHER TEE -->
 <div class="card">
 <img src="ad4.png">
 <div class="price">
@@ -301,35 +356,13 @@ footer{
 </div>
 </section>
 
-<!-- ABOUT -->
 <section id="about">
 <div class="about">
 <h2>About No AGEx</h2>
-
-<p>No AGEx is not just a clothing brand — it is a mindset. We believe fashion should never be limited by age, trends, or labels. Style is personal, timeless, and powerful.</p>
-
-<p>Our journey began with a simple idea: create premium everyday wear that speaks confidence without shouting. Every No AGEx piece is designed to feel comfortable, look bold, and age gracefully — just like the people who wear it.</p>
-
-<p>We focus on quality fabrics, clean silhouettes, and designs that work across generations. Whether you are 18 or 48, No AGEx is made to move with you.</p>
-
-<p>This brand stands for self-belief, individuality, and breaking stereotypes. Fashion has no expiry date — and neither do you.</p>
-
-<div class="terms">
-<h3>Terms & Conditions</h3>
-<ul>
-<li>All prices are fixed at ₹849 with a limited 20% discount.</li>
-<li>Orders once placed cannot be cancelled.</li>
-<li>Minor color variations may occur due to lighting.</li>
-<li>Size exchanges only for manufacturing defects.</li>
-<li>Orders are confirmed after Google Form submission.</li>
-</ul>
-<br>
-<label><input type="checkbox" required> I agree to the Terms & Conditions</label>
-</div>
+<p>No AGEx is built on the belief that fashion has no age limit. We create premium everyday wear that stays relevant across generations.</p>
 </div>
 </section>
 
-<!-- SIZE MODAL -->
 <div id="sizeModal">
 <div class="modal">
 <h3>Size Chart (inches)</h3>
@@ -351,15 +384,60 @@ footer{
 </footer>
 
 <script>
+/* TERMS */
+window.onload=function(){
+  document.body.style.overflow="hidden";
+}
+function acceptTerms(){
+  if(!document.getElementById("agreeCheck").checked){
+    alert("Please agree to continue");
+    return;
+  }
+  document.getElementById("termsPopup").style.display="none";
+  document.body.style.overflow="auto";
+}
+
+/* SWIPE */
+const focusedImages=["ad.png","ad2.png","ad3.png"];
+let currentIndex=0,startX=null,isDragging=false;
+
+function updateFocused(){
+  const img=document.getElementById("focusedImg");
+  img.style.opacity=0;
+  setTimeout(()=>{
+    img.src=focusedImages[currentIndex];
+    img.style.opacity=1;
+  },120);
+}
+function startTouch(e){startX=e.touches[0].clientX;}
+function moveTouch(e){
+  if(!startX) return;
+  let diff=startX-e.touches[0].clientX;
+  if(Math.abs(diff)>50){
+    currentIndex=Math.min(Math.max(currentIndex+(diff>0?1:-1),0),focusedImages.length-1);
+    updateFocused();startX=null;
+  }
+}
+function startMouse(e){isDragging=true;startX=e.clientX;}
+function moveMouse(e){
+  if(!isDragging) return;
+  let diff=startX-e.clientX;
+  if(Math.abs(diff)>60){
+    currentIndex=Math.min(Math.max(currentIndex+(diff>0?1:-1),0),focusedImages.length-1);
+    updateFocused();isDragging=false;
+  }
+}
+function endSwipe(){isDragging=false;startX=null;}
 function changeImg(src){
-  document.getElementById("focusedImg").src = src;
+  currentIndex=focusedImages.indexOf(src);
+  updateFocused();
 }
-function openSize(){
-  document.getElementById("sizeModal").style.display="flex";
-}
-function closeSize(){
-  document.getElementById("sizeModal").style.display="none";
-}
+
+/* SIZE */
+function openSize(){document.getElementById("sizeModal").style.display="flex";}
+function closeSize(){document.getElementById("sizeModal").style.display="none";}
+
+/* ORDER */
 function order(){
   window.open("https://forms.gle/M7VQPv7Dk7XXUrmy5","_blank");
 }
